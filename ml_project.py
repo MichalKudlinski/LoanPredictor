@@ -45,11 +45,11 @@ class DataVisualizator():
 
 
 dv= DataVisualizator()
-# dv.show_head(data_frame)
-# dv.show_shape(data_frame)
-# dv.show_labels(data_frame)
-# dv.is_null(data_frame)
-# dv.info(data_frame)
+dv.show_head(data_frame)
+dv.show_shape(data_frame)
+
+dv.is_null(data_frame)
+dv.info(data_frame)
 
 """Manipulating data in trainingn and test datasets"""
 
@@ -67,7 +67,7 @@ class DataManipulator():
          'Graduate': 1, 'Not Graduate': 2,
          'Urban': 3, 'Semiurban': 2,'Rural': 1,
          'Y': 1, 'N': 0,
-         '3+': 3}
+         '3+': 3, '1': 1, '2': 2, '0': 0}
 
          global train_dataframe, test_dataframe
          train_dataframe = df.applymap(lambda x: to_numeric.get(x) if x in to_numeric else x)
@@ -93,7 +93,7 @@ corr_matrix = train_dataframe.corr()
 sn.heatmap(corr_matrix,annot = True)
 plt.show()
 
-#using logistic regression and linear regression models 
+
 
 
 class ModelTrainer():
@@ -149,22 +149,22 @@ print(LR_SC)
 print(DT_SC)
 print(RF_SC)
 
-class ScoreChecker():
-   def train_100000_times(self):
-      global result
-      sum_LR = 0
-      sum_RF = 0
-      for i in range(100):
-         Mt.logistic_reg()
-         sum_LR+= LR_SC
-      for i in range(100):
-         Mt.random_forest()
-         sum_RF+= RF_SC
-      result = (sum_LR, sum_RF)
+# class ScoreChecker():
+#    def train_100000_times(self):
+#       global result
+#       sum_LR = 0
+#       sum_RF = 0
+#       for i in range(100):
+#          Mt.logistic_reg()
+#          sum_LR+= LR_SC
+#       for i in range(100):
+#          Mt.random_forest()
+#          sum_RF+= RF_SC
+#       result = (sum_LR, sum_RF)
 
-SC = ScoreChecker()
-SC.train_100000_times()
-print(result)
+# SC = ScoreChecker()
+# SC.train_100000_times()
+# print(result)
 
 
    
